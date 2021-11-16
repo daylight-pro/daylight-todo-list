@@ -4,9 +4,9 @@ import { makeStyles } from '@mui/styles';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import marked from 'marked';
 import {RepeatTodo} from '../../types/type'
 import Util from '../../Util'
+import DueViewer from '../../components/dueViewer';
 
 const useStyles = makeStyles((theme)=>({
 	todoIcon:{
@@ -91,7 +91,7 @@ function Repeat(props: RepeatPropsType){
 		</Box>
 		<List>
 			{/*受け取ったtodoListを使って表示する*/}
-			{repeatList.map((repeat, idx) => (
+			{repeatList.map((repeat) => (
 				<React.Fragment>
 				<ListItem button alignItems="flex-start" key={repeat.id} onClick={() => {props.repeatClicked(repeat)}}>
 					<ListItemText
@@ -103,48 +103,7 @@ function Repeat(props: RepeatPropsType){
 						}
 						secondary={
 							<React.Fragment>
-								<React.Fragment>
-									{(repeat.note !== "") &&
-										<Box className={classes.note} component="span" onClick={(e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{e.stopPropagation()}}>
-											<span dangerouslySetInnerHTML={{ __html: marked(repeat.note)}}/>
-										</Box >
-									}
-								{(repeat.due.getTime()-new Date().getTime()) <= 0 ?
-									<Box component="span" mt={1}>
-										<Box component="span" className={classes.todoIcon + " " + classes.over} display="inline" >
-											<RepeatIcon/>
-										</Box>
-									<Box component="span" ml={1} display="inline" className={classes.over}>
-										{Math.floor(-(repeat.due.getTime()-new Date().getTime())/1000/60/60) < 24 ?
-											"Over " + Math.floor(-(repeat.due.getTime()-new Date().getTime())/1000/60/60)+" Hours"
-										:
-											"Over " + Math.floor(-(repeat.due.getTime()-new Date().getTime())/1000/60/60/24)+" Days"
-										}
-										{"  "}[{Util.printDue(repeat.due)}]
-									</Box>
-									</Box>
-									:(Math.floor((repeat.due.getTime()-new Date().getTime())/1000/60/60))< 24 ?
-										<Box component="span" mt={1}>
-										<Box component="span" className={classes.todoIcon + " " + classes.soonDeadLine} display="inline" >
-											<RepeatIcon/>
-										</Box>
-										<Box component="span" ml={1} display="inline" className={classes.soonDeadLine}>
-											{Math.floor((repeat.due.getTime()-new Date().getTime())/1000/60/60)+" Hours"}
-											{"  "}[{Util.printDue(repeat.due)}]
-										</Box>
-										</Box>
-										:
-										<Box component="span" mt={1}>
-											<Box component="span" className={classes.todoIcon} display="inline" >
-												<RepeatIcon/>
-											</Box>
-											<Box component="span" ml={1} display="inline">
-												{Math.floor((repeat.due.getTime()-new Date().getTime())/1000/60/60/24)+" Days"}
-												{"  "}[{Util.printDue(repeat.due)}]
-											</Box>
-											</Box>
-								}
-								</React.Fragment>
+								<DueViewer due={repeat.due} repeat={true}/>
 							</React.Fragment>
 						}
 					/>

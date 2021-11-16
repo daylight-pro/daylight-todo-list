@@ -2,12 +2,12 @@ import React from 'react';
 import {List,ListItem,Divider,ListItemText,ListItemAvatar,Checkbox, Typography,Box,IconButton} from '@mui/material'
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import { makeStyles } from '@mui/styles';
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import {Todo} from '../../types/type'
 import TodoDetail from './TodoDetail'
 import Util from '../../Util'
+import DueViewer from '../../components/dueViewer';
 
 const useStyles = makeStyles((theme)=>({
 	todoIcon:{
@@ -133,43 +133,7 @@ function WorkingTodo(props:WorkingTodoPropsType){
 						}
 						secondary={
 							<React.Fragment>
-								<React.Fragment>
-								{(todo.due.getTime()-new Date().getTime()) <= 0 ?
-									<Box component="span" mt={1}>
-										<Box className={classes.todoIcon + " " + classes.over} display="inline" >
-											<HourglassEmptyIcon/>
-										</Box>
-									<Box component="span" ml={1} display="inline" className={classes.over}>
-										{Math.floor(-(todo.due.getTime()-new Date().getTime())/1000/60/60) < 24 ?
-											"Over " + Math.floor(-(todo.due.getTime()-new Date().getTime())/1000/60/60)+" Hours"
-										:
-											"Over " + Math.floor(-(todo.due.getTime()-new Date().getTime())/1000/60/60/24)+" Days"
-										}
-										{"  "}[{Util.printDue(todo.due)}]
-									</Box>
-									</Box>
-									:(Math.floor((todo.due.getTime()-new Date().getTime())/1000/60/60))< 24 ?
-										<Box component="span" mt={1}>
-										<Box component="span" className={classes.todoIcon + " " + classes.soonDeadLine} display="inline" >
-											<HourglassEmptyIcon/>
-										</Box>
-										<Box component="span" ml={1} display="inline" className={classes.soonDeadLine}>
-											{Math.floor((todo.due.getTime()-new Date().getTime())/1000/60/60)+" Hours"}
-											{"  "}[{Util.printDue(todo.due)}]
-										</Box>
-										</Box>
-										:
-										<Box component="span" mt={1}>
-											<Box component="span" className={classes.todoIcon} display="inline" >
-												<HourglassEmptyIcon/>
-											</Box>
-											<Box component="span" ml={1} display="inline">
-												{Math.floor((todo.due.getTime()-new Date().getTime())/1000/60/60/24)+" Days"}
-												{"  "}[{Util.printDue(todo.due)}]
-											</Box>
-										</Box>
-								}
-								</React.Fragment>
+								<DueViewer due={todo.due}/>
 							</React.Fragment>
 						}
 					/>
