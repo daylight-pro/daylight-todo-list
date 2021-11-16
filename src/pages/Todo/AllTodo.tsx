@@ -124,7 +124,7 @@ function AllTodo(props:AllTodoPropsType){
 						secondary={
 							<React.Fragment>
 								<StartViewer start={todo.start}/>
-								<br className="br-sp"/>
+								{todo.start !== null && <br className="br-sp"/>}
 								<DueViewer due={todo.due}/>
 							</React.Fragment>
 						}
