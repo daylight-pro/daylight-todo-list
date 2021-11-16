@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+ 	text-align: center;
 }
 
 .App-logo {
@@ -7,10 +7,33 @@
   pointer-events: none;
 }
 
+.MuiFab-root {
+	margin: 0 !important;
+	top: auto;
+	right: 20px;
+	bottom: 20px;
+	left: auto;
+	position: fixed !important;
+}
+
+.MuiCollapseWrapperInner{
+	background-color: green;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+@media screen and (min-width:650px){
+	.br-pc{display:block;}
+	.br-sp{display:none;}
+}
+
+@media screen and (max-width:650px){
+	.br-pc{display:none;}
+	.br-sp{display:block;}
 }
 
 .App-header {
@@ -35,4 +58,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+a {
+	color:rgb(209, 120, 245);
 }
