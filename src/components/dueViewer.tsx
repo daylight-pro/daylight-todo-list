@@ -45,7 +45,7 @@ type DueViewerPropsType = {
 	repeat?: boolean | undefined,
 }
 
-function DueViewer(props: DueViewerPropsType){
+export function DueViewer(props: DueViewerPropsType){
 	const classes = useStyles();
 	return(
 	<React.Fragment>
@@ -88,4 +88,42 @@ function DueViewer(props: DueViewerPropsType){
 	);
 }
 
-export default DueViewer;
+export function ShortDueViewer(props: DueViewerPropsType){
+	const classes = useStyles();
+	return(
+	<React.Fragment>
+		{(props.due.getTime()-new Date().getTime()) <= 0 ?
+			<Box component="span" mt={1}>
+				<Box component="span" className={classes.todoIcon + " " + classes.over} display="inline" >
+					{props.repeat?<RepeatIcon/>:<HourglassEmptyIcon/>}
+				</Box>
+			<Box component="span" ml={1} display="inline" className={classes.over}>
+				{Math.floor(-(props.due.getTime()-new Date().getTime())/1000/60/60) < 24 ?
+					"Over " + Math.floor(-(props.due.getTime()-new Date().getTime())/1000/60/60)+" Hours"
+				:
+					"Over " + Math.floor(-(props.due.getTime()-new Date().getTime())/1000/60/60/24)+" Days"
+				}
+			</Box>
+			</Box>
+			:(Math.floor((props.due.getTime()-new Date().getTime())/1000/60/60))< 24 ?
+				<Box component="span" mt={1}>
+				<Box component="span" className={classes.todoIcon + " " + classes.soonDeadLine} display="inline" >
+					{props.repeat?<RepeatIcon/>:<HourglassEmptyIcon/>}
+				</Box>
+				<Box component="span" ml={1} display="inline" className={classes.soonDeadLine}>
+					{Math.floor((props.due.getTime()-new Date().getTime())/1000/60/60)+" Hours"}
+				</Box>
+				</Box>
+				:
+				<Box component="span" mt={1}>
+					<Box component="span" className={classes.todoIcon} display="inline" >
+						{props.repeat?<RepeatIcon/>:<HourglassEmptyIcon/>}
+					</Box>
+					<Box component="span" ml={1} display="inline">
+						{Math.floor((props.due.getTime()-new Date().getTime())/1000/60/60/24)+" Days"}
+					</Box>
+					</Box>
+		}
+	</React.Fragment>
+	);
+}

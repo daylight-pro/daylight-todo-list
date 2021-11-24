@@ -22,4 +22,4 @@ export type RepeatTodo = {
 	note: string
 }
 
-export type TodoType = "Working"|"All"|"Inbox"|"Later"|"Repeat";
+export type TodoType = "Working"|"All"|"Inbox"|"Later"|"Repeat"|"Home";

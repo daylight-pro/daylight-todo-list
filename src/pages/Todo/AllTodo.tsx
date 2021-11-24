@@ -7,40 +7,9 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import {Todo} from '../../types/type'
 import TodoDetail from './TodoDetail'
 import Util from '../../Util'
-import DueViewer from '../../components/dueViewer';
+import {DueViewer} from '../../components/dueViewer';
 import StartViewer from '../../components/startViewer';
-
-const useStyles = makeStyles((theme)=> ({
-	todoIcon:{
-		verticalAlign:"-6px"
-	},
-	soonDeadLine:{
-		color:"#FFB83F"
-	},
-	titleIcon:{
-		verticalAlign:"-4px",
-	},
-	over:{
-		color:"#FF4CB1"
-	},
-	working:{
-		color:"#7bc890"
-	},
-	note:{
-		lineHeight:2.5
-	},
-	nested: {
-  	  //paddingLeft: theme.spacing(4),
-  	},
-	expandButton:{
-		border: "solid",
-		borderRadius:"50%",
-		fontSize:"30px"
-	},
-	button:{
-		padding:"0"
-	}
-}));
+import myClasses from '../../materialui/myClasses';
 
 type AllTodoPropsType = {
 	todoList : Todo[],
@@ -60,7 +29,7 @@ function AllTodo(props:AllTodoPropsType){
 		return a.due.getTime() - b.due.getTime();
 	});
 	const changed = props.changeCompleted;
-	const classes = useStyles();
+	const classes = myClasses.useStyles();
 
 	const handleExpandMore = (e:React.MouseEvent<SVGSVGElement, MouseEvent>, todo:Todo)=>{
 		e.stopPropagation();

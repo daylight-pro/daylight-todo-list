@@ -3,6 +3,7 @@ import WorkingTodo from './pages/Todo/WorkingTodo';
 import InboxTodo from './pages/Todo/InboxTodo';
 import LaterTodo from './pages/Todo/LaterTodo';
 import Repeat from './pages/Todo/Repeat';
+import Home from './pages/Todo/Home';
 import AddTodoDialog from './components/dialogs/addTodoDialog'
 import EditTodoDialog from './components/dialogs/editTodoDialog';
 import AddRepeatDialog from './components/dialogs/addRepeatDialog';
@@ -68,6 +69,21 @@ function App() {
 			subscription.unsubscribe();
 		}
 	}, [state])
+
+	useEffect(()=>{
+		 const ua = window.navigator.userAgent.toLowerCase();
+        if (ua.indexOf('iphone') > 0 || ua.indexOf('ipod') > 0 || ua.indexOf('android') > 0 && ua.indexOf('mobile') > 0) {
+            state.setDisplayMode("Working");
+        } else if (ua.indexOf('ipad') > 0 || ua.indexOf('android') > 0) {
+            // iOS12 まで
+            state.setDisplayMode("Home");
+        } else if (ua.indexOf('ipad') > -1 || ua.indexOf('macintosh') > -1 && 'ontouchend' in document) {
+            // iOS13 以降
+            state.setDisplayMode("Home");
+        } else {
+            state.setDisplayMode("Home");
+        }
+	},[]);
 
 	const changeDisplay = ((info:TodoType)=>{
 		setIsOpenDrawer(false);
@@ -148,6 +164,14 @@ function App() {
 						isOpenSubtasks = {isOpenRepeatSubTasks}
 						setIsOpenSubtasks = {setIsOpenRepeatSubTasks}
 						edit={state.editRepeat}
+					/>
+				}
+				{
+					state.displayMode === "Home" &&
+					<Home
+						todoList = {state.todoList}
+						edit={state.editTodo}
+						setEditDialog={setEditDialogTodo}
 					/>
 				}
 				</div>

@@ -7,42 +7,9 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import {Todo} from '../../types/type'
 import TodoDetail from './TodoDetail'
 import Util from '../../Util'
-import DueViewer from '../../components/dueViewer';
+import {DueViewer} from '../../components/dueViewer';
+import myClasses from '../../materialui/myClasses';
 
-const useStyles = makeStyles((theme)=>({
-	todoIcon:{
-		verticalAlign:"-6px"
-	},
-	soonDeadLine:{
-		color:"#FFB83F"
-	},
-	titleIcon:{
-		verticalAlign:"-6px"
-	},
-	title:{
-		color:"#8A77B7"	
-	},
-	over:{
-		color:"#FF4CB1"
-	},
-	working:{
-		color:"#7bc890"
-	},
-	note:{
-		lineHeight:2.5
-	},
-	nested: {
-  	  paddingLeft: 4,
-  	},
-	expandButton:{
-		border: "solid",
-		borderRadius:"50%",
-		fontSize:"30px"
-	},
-	button:{
-		padding:"0"
-	}
-}));
 
 type InboxTodoPropsType = {
 	todoList : Todo[],
@@ -66,7 +33,7 @@ function InboxTodo(props: InboxTodoPropsType){
 		return a.due.getTime() - b.due.getTime();
 	});
 	const changed = props.changeCompleted;
-	const classes = useStyles();
+	const classes = myClasses.useStyles();
 
 	const handleExpandMore = (e:React.MouseEvent<SVGSVGElement, MouseEvent>, todo : Todo)=>{
 		console.log(props.isOpenSubtasks);
@@ -91,7 +58,7 @@ function InboxTodo(props: InboxTodoPropsType){
 	return(
 	<React.Fragment>
 		<Box  mt={4} mb={2}>
-		<Typography variant="h4" className={classes.title}>
+		<Typography variant="h4" className={classes.inbox}>
 			<InboxIcon className={classes.titleIcon} fontSize='large'/> インボックス
 		</Typography>
 		</Box>

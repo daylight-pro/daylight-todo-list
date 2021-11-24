@@ -1,48 +1,13 @@
 import React from 'react';
 import {List,ListItem,Divider,ListItemText,ListItemAvatar,Checkbox, Typography,Box,IconButton} from '@mui/material'
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
-import { makeStyles } from '@mui/styles';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import {Todo} from '../../types/type'
 import TodoDetail from './TodoDetail'
 import Util from '../../Util'
-import DueViewer from '../../components/dueViewer';
-
-const useStyles = makeStyles((theme)=>({
-	todoIcon:{
-		verticalAlign:"-6px"
-	},
-	titleIcon:{
-		verticalAlign:"-3px"
-	},
-	title:{
-		color:"#7bc890"
-	},
-	soonDeadLine:{
-		color:"#FFB83F"
-	},
-	over:{
-		color:"#FF4CB1"
-	},
-	working:{
-		color:"#7bc890"
-	},
-	note:{
-		lineHeight:2.5
-	},
-	nested: {
-  	  paddingLeft: 4,
-  	},
-	expandButton:{
-		border: "solid",
-		borderRadius:"50%",
-		fontSize:"30px"
-	},
-	button:{
-		padding:"0"
-	}
-}));
+import {DueViewer} from '../../components/dueViewer';
+import myClasses from '../../materialui/myClasses';
 
 
 type WorkingTodoPropsType = {
@@ -61,7 +26,7 @@ type WorkingTodoPropsType = {
 function WorkingTodo(props:WorkingTodoPropsType){
 	const todoList : Todo[] = [];
 	const changed = props.changeCompleted;
-	const classes = useStyles();
+	const classes = myClasses.useStyles();
 	const handleExpandMore = (e:React.MouseEvent<SVGSVGElement, MouseEvent>, todo : Todo)=>{
 		e.stopPropagation();
 		const newS =  Object.create(props.isOpenSubtasks);
@@ -94,7 +59,7 @@ function WorkingTodo(props:WorkingTodoPropsType){
 	return(
 	<React.Fragment>
 		<Box  mt={4} mb={2}>
-		<Typography variant="h4" className={classes.title}>
+		<Typography variant="h4" className={classes.working}>
 			<PlayCircleFilledIcon fontSize='large' className={classes.titleIcon}/> 実行中
 		</Typography>
 		</Box>

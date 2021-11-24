@@ -5,10 +5,11 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import EventIcon from '@material-ui/icons/Event';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import ListAltIcon from '@material-ui/icons/ListAlt';
-
+import HomeIcon from '@mui/icons-material/Home';
+import {TodoType} from "../types/type"
 type drawerMenuListPropsType = {
 	mode:String,
-	changed: (info:"Working"|"All"|"Inbox"|"Later"|"Repeat") => void,
+	changed: (info:TodoType) => void,
 	inboxCount: number,
 	inboxSoonCount: number,
 	workingCount: number,
@@ -88,6 +89,15 @@ function drawerMenuList(props:drawerMenuListPropsType){
 			</ListItemAvatar>
 			<ListItemText
 				primary={"全て"}
+			/>
+		</ListItem>
+		<Divider component="li"/>
+		<ListItem button selected={props.mode==="Home"}  key={"all"} onClick={()=>props.changed("Home")}>
+			<ListItemAvatar>
+				<HomeIcon/>
+			</ListItemAvatar>
+			<ListItemText
+				primary={"ホーム"}
 			/>
 		</ListItem>
 		<Divider component="li"/>

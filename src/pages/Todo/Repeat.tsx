@@ -1,47 +1,12 @@
 import React from 'react';
 import {List,ListItem,Divider,ListItemText, Typography,Box,Checkbox,Collapse,ListItemIcon,IconButton} from '@mui/material'
-import { makeStyles } from '@mui/styles';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import {RepeatTodo} from '../../types/type'
 import Util from '../../Util'
-import DueViewer from '../../components/dueViewer';
-
-const useStyles = makeStyles((theme)=>({
-	todoIcon:{
-		verticalAlign:"-6px"
-	},
-	soonDeadLine:{
-		color:"#FFB83F"
-	},
-	titleIcon:{
-		verticalAlign:"-4px"
-	},
-	over:{
-		color:"#FF4CB1"
-	},
-	working:{
-		color:"#7bc890"
-	},
-	note:{
-		lineHeight:2.5
-	},
-	title:{
-		color:"#ffff61"
-	},
-	nested: {
-  	  paddingLeft: 4,
-  	},
-	expandButton:{
-		border: "solid",
-		borderRadius:"50%",
-		fontSize:"30px"
-	},
-	button:{
-		padding:"0"
-	}
-}));
+import {DueViewer} from '../../components/dueViewer';
+import myClasses from '../../materialui/myClasses';
 
 type RepeatPropsType = {
 	repeatList: RepeatTodo[],
@@ -60,7 +25,7 @@ function Repeat(props: RepeatPropsType){
 	repeatList.sort((a,b)=>{
 		return a.due.getTime() - b.due.getTime();
 	});
-	const classes = useStyles();
+	const classes = myClasses.useStyles();
 	const handleExpandMore = (e:React.MouseEvent<SVGSVGElement, MouseEvent>, todo:RepeatTodo)=>{
 		console.log(props.isOpenSubtasks);
 		e.stopPropagation();
@@ -84,7 +49,7 @@ function Repeat(props: RepeatPropsType){
 	}
 	return(
 	<React.Fragment>
-		<Box  mt={4} mb={2} className={classes.title}>
+		<Box  mt={4} mb={2} className={classes.repeat}>
 		<Typography variant="h4">
 			<RepeatIcon className={classes.titleIcon} fontSize='large' sx={{mr:4}}/> 繰り返し
 		</Typography>

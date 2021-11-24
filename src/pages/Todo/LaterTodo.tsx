@@ -1,6 +1,5 @@
 import React from 'react';
 import {List,ListItem,Divider,ListItemText,ListItemAvatar,Checkbox, Typography,Box,IconButton} from '@mui/material'
-import { makeStyles } from '@mui/styles';
 import EventIcon from '@mui/icons-material/Event';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -8,45 +7,8 @@ import {Todo} from '../../types/type'
 import TodoDetail from './TodoDetail'
 import Util from '../../Util'
 import StartViewer from '../../components/startViewer';
-import DueViewer from '../../components/dueViewer';
-
-const useStyles = makeStyles((theme)=>({
-	todoIcon:{
-		verticalAlign:"-6px"
-	},
-	soonDeadLine:{
-		color:"#FFB83F"
-	},
-	titleIcon:{
-		verticalAlign:"-4px"
-	},
-	title:{
-		color:"#dc143c"
-	},
-	labelTitle:{
-		color: "#9B95C9"
-	},
-	over:{
-		color:"#FF4CB1"
-	},
-	working:{
-		color:"#7bc890"
-	},
-	note:{
-		lineHeight:2.5
-	},
-	nested: {
-  	  paddingLeft: 4,
-  	},
-	  expandButton:{
-		border: "solid",
-		borderRadius:"50%",
-		fontSize:"30px"
-	},
-	button:{
-		padding:"0"
-	}
-}));
+import {DueViewer} from '../../components/dueViewer';
+import myClasses from '../../materialui/myClasses';
 
 type LaterTodoPropsType = {
 	todoList : Todo[],
@@ -100,7 +62,7 @@ function LaterTodo(props:LaterTodoPropsType){
 		todoList.push(todo)
 	});
 	const changed = props.changeCompleted;
-	const classes = useStyles();
+	const classes = myClasses.useStyles();
 	const handleExpandMore = (e:React.MouseEvent<SVGSVGElement, MouseEvent>, todo : Todo)=>{
 		console.log(props.isOpenSubtasks);
 		e.stopPropagation();
@@ -124,7 +86,7 @@ function LaterTodo(props:LaterTodoPropsType){
 	return(
 	<React.Fragment>
 		<Box  mt={4} mb={2}>
-		<Typography variant="h4" className={classes.title}>
+		<Typography variant="h4" className={classes.later}>
 			<EventIcon className={classes.titleIcon} fontSize='large' sx={{mr:4}}/> 未着手
 		</Typography>
 		</Box>
