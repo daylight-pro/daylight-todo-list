@@ -1,4 +1,5 @@
 import React from 'react';
+import {yellow,blue,green,orange,red} from '@mui/material/colors';
 import {List,ListItem,Divider,ListItemText,ListItemAvatar,Checkbox, Typography,Box,IconButton} from '@mui/material'
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import ExpandLess from '@mui/icons-material/ExpandLess';
@@ -25,6 +26,7 @@ type WorkingTodoPropsType = {
 
 function WorkingTodo(props:WorkingTodoPropsType){
 	const todoList : Todo[] = [];
+	const color_dict = {"red":red[500],"yellow":yellow[500],"orange":orange[500],"green":green[500],"blue":blue[500]};
 	const changed = props.changeCompleted;
 	const classes = myClasses.useStyles();
 	const handleExpandMore = (e:React.MouseEvent<SVGSVGElement, MouseEvent>, todo : Todo)=>{
@@ -92,6 +94,7 @@ function WorkingTodo(props:WorkingTodoPropsType){
 							:
 							<Typography
 								variant={"h6"}
+								sx={{color:color_dict[todo.color]}}
 							>
 								{todo.title}
 							</Typography>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import {useState } from 'react'
-import {AppBar,Toolbar,IconButton, Typography,Button,Dialog,Slide,TextField,List,ListItem,ListItemText,Box,Divider,Collapse} from '@mui/material'
+import {yellow,blue,green,orange,red} from '@mui/material/colors';
+import {AppBar,Toolbar,IconButton, Typography,Button,Dialog,Slide,TextField,List,ListItem,ListItemText,Box,Divider,Collapse,Select,MenuItem,Avatar} from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -8,6 +9,11 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import {TransitionProps} from '@mui/material/transitions'
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
+import PageviewIcon from '@mui/icons-material/Pageview';
+import PendingIcon from '@mui/icons-material/Pending';
+import EditIcon from '@mui/icons-material/Edit';
 import Yamde from 'yamde';
 import {Todo,SubTask} from '../../types/type'
 
@@ -46,6 +52,7 @@ function EditTodoDialog(props:EditTodoDialogPropsType){
 	const [due,setDue] = useState(new Date());
 	const [start,setStart] = useState<Date|null>(null);
 	const [subTasks,setSubTasks] = useState<SubTask[]>([])
+	const [color,setColor] = useState("red")
 	useEffect(()=>{
 		if(props.todo != null){
 			setTitle(props.todo.title);
@@ -53,6 +60,7 @@ function EditTodoDialog(props:EditTodoDialogPropsType){
 			setNote(props.todo.note);
 			setStart(props.todo.start);
 			setSubTasks(props.todo.subTasks);
+			setColor(props.todo.color);
 		}
 	},[props.todo]);
 	const handleClose = ()=>{
@@ -67,7 +75,8 @@ function EditTodoDialog(props:EditTodoDialogPropsType){
 			start: start,
 			subTasks:subTasks,
 			note: note,
-			id: props.todo!.id
+			id: props.todo!.id,
+			color: color
 		})
 		handleClose();
 	}
@@ -80,7 +89,8 @@ function EditTodoDialog(props:EditTodoDialogPropsType){
 			start: start,
 			subTasks: subTasks,
 			note: note,
-			id: props.todo!.id
+			id: props.todo!.id,
+			color: color
 		})
 		handleClose();
 	}
@@ -193,6 +203,39 @@ function EditTodoDialog(props:EditTodoDialogPropsType){
 								<Button variant="outlined" disabled={start==null} color="secondary" onClick={()=>{setStart(null)}}>
 									Reset Start
 								</Button>
+							</Box>
+							<br className="br-sp"/>
+							<br className="br-sp"/>
+							<Divider className="br-sp"/>
+							<br className="br-sp"/>
+							<Box display="inline" mr={2}>
+								<Select value={color} onChange={(event) => setColor(event.target.value)}>
+									<MenuItem value="red">
+										<Avatar sx={{ bgcolor: red[500] , width:30, height:30}}>
+											<RemoveCircleIcon/>
+										</Avatar>
+									</MenuItem>
+									<MenuItem value="orange">
+										<Avatar sx={{ bgcolor: orange[500], width:30, height:30 }}>
+											<AssignmentLateIcon/>
+										</Avatar>
+									</MenuItem>
+									<MenuItem value="yellow">
+										<Avatar sx={{ bgcolor: yellow[500], width:30, height:30 }}>
+											<PendingIcon/>
+										</Avatar>
+									</MenuItem>
+									<MenuItem value="green">
+										<Avatar sx={{ bgcolor: green[500], width:30, height:30 }}>
+											<EditIcon/>
+										</Avatar>
+									</MenuItem>
+									<MenuItem value="blue">
+										<Avatar sx={{ bgcolor: blue[500], width:30, height:30 }}>
+											<PageviewIcon/>
+										</Avatar>
+									</MenuItem>
+								</Select>
 							</Box>
 							</React.Fragment>
 						}

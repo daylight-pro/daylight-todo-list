@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {yellow,blue,green,orange,red} from '@mui/material/colors';
 import {Card,Typography,Box} from '@mui/material';
 import {Todo} from '../types/type';
 import myClasses from '../materialui/myClasses';
@@ -11,7 +12,7 @@ type TodoViewPropsType = {
 }
 
 function TodoView(props : TodoViewPropsType) {
-
+	const color_dict = {"red":red[500],"yellow":yellow[500],"orange":orange[500],"green":green[500],"blue":blue[500]};
 	const classes = myClasses.useStyles();
 	return(
 		<Box>
@@ -40,9 +41,15 @@ function TodoView(props : TodoViewPropsType) {
 				{...provided.draggableProps}
 				{...provided.dragHandleProps}
 			>
+				{props.todo.completed ?
 				<Box className={classes.todoViewTitle} >
 					{props.todo.title}
 				</Box>
+				:
+				<Box className={classes.todoViewTitle} sx={{color:color_dict[props.todo.color]}}>
+					{props.todo.title}
+				</Box>
+				}
 				<Box className={classes.todoViewDate}>
 					<DueViewer due={props.todo.due}/>
 				</Box>

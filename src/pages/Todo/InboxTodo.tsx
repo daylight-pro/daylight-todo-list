@@ -1,4 +1,5 @@
 import React from 'react';
+import {yellow,blue,green,orange,red} from '@mui/material/colors';
 import {List,ListItem,Divider,ListItemText,ListItemAvatar,Checkbox, Typography,Box,IconButton} from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -24,6 +25,8 @@ type InboxTodoPropsType = {
 
 function InboxTodo(props: InboxTodoPropsType){
 	const todoList : Todo[] = [];
+	const color_dict = {"red":red[500],"yellow":yellow[500],"orange":orange[500],"green":green[500],"blue":blue[500]};
+	
 	props.todoList.forEach((todo)=>{
 		if(todo.start == null){
 			todoList.push(todo);
@@ -91,6 +94,7 @@ function InboxTodo(props: InboxTodoPropsType){
 							:
 							<Typography
 								variant={"h6"}
+								sx={{color:color_dict[todo.color]}}
 							>
 								{todo.title}
 							</Typography>

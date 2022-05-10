@@ -44,12 +44,12 @@ function LaterColumn(props : LaterColumnPropsType) {
 	curTodoList.forEach((innerTodoList,ind)=>{
 		const date = new Date();
 		date.setDate(date.getDate() + 1 + ind);
-		todoList.push({title:Util.printDate(date),start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader"})
+		todoList.push({title:Util.printDate(date),start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader",color:"red"})
 		innerTodoList.forEach((todo)=>{
 				todoList.push(todo)
 		});
 	});
-	todoList.push({title:"Later",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader"})
+	todoList.push({title:"Later",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader",color:"red"})
 	laterTodoList.forEach((todo)=>{
 		todoList.push(todo)
 	});

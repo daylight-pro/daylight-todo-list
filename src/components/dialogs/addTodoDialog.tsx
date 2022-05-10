@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
-import {useState } from 'react'
-import {AppBar,Toolbar,IconButton, Typography,Button,Dialog,Slide,TextField,List,ListItem,ListItemText,Box,Divider,Collapse} from '@mui/material'
+import {useState } from 'react';
+import {yellow,blue,green,orange,red} from '@mui/material/colors';
+import {AppBar,Toolbar,IconButton, Typography,Button,Dialog,Slide,TextField,List,ListItem,ListItemText,Box,Divider,Collapse,Select,MenuItem,Avatar} from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import {TransitionProps} from '@mui/material/transitions'
+import {TransitionProps} from '@mui/material/transitions';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
+import PageviewIcon from '@mui/icons-material/Pageview';
+import PendingIcon from '@mui/icons-material/Pending';
+import EditIcon from '@mui/icons-material/Edit';
 import Yamde from 'yamde';
 import {Todo,SubTask} from '../../types/type'
 
@@ -49,6 +55,7 @@ function AddTodoDialog(props:AddTodoDialogPropsType){
 	const [due,setDue] = useState(new Date());
 	const [start,setStart] = useState<Date|null>(null);
 	const [subTasks,setSubTasks] = useState<SubTask[]>([]);
+	const [color,setColor] = useState("red")
 	useEffect(()=>{
 		if(props.open){
 			setTitle("");
@@ -56,6 +63,7 @@ function AddTodoDialog(props:AddTodoDialogPropsType){
 			setNote("");
 			setStart(null);
 			setSubTasks([]);
+			setColor("red")
 		}
 	},[props.open]);
 	const handleClose = ()=>{
@@ -69,7 +77,8 @@ function AddTodoDialog(props:AddTodoDialogPropsType){
 			due: due,
 			start: start,
 			subTasks:subTasks,
-			note: note
+			note: note,
+			color: color
 		});
 		handleClose();
 	};
@@ -148,14 +157,14 @@ function AddTodoDialog(props:AddTodoDialogPropsType){
 								noValidate
 								autoComplete="off"
 							>
-							<Box display="inline" mr={5}>
+							<Box display="inline" mr={2}>
 								<TextField label="Title" sx = {{width: 350}} variant="filled" onChange={(event) => setTitle(event.target.value)}/>
 							</Box>
 							<br className="br-sp"/>
 							<br className="br-sp"/>
 							<Divider className="br-sp"/>
 							<br className="br-sp"/>
-							<Box display="inline" mr={5}>
+							<Box display="inline" mr={2}>
 							      <DateTimePicker
 									label="Due"
 									value={due}
@@ -167,7 +176,7 @@ function AddTodoDialog(props:AddTodoDialogPropsType){
 							<br className="br-sp"/>
 							<Divider className="br-sp"/>
 							<br className="br-sp"/>
-							<Box display="inline" mr={5}>
+							<Box display="inline" mr={2}>
 								<DesktopDatePicker
 								label="Start"
 								value={start}
@@ -179,10 +188,43 @@ function AddTodoDialog(props:AddTodoDialogPropsType){
 							<br className="br-sp"/>
 							<Divider className="br-sp"/>
 							<br className="br-sp"/>
-							<Box display="inline" mr={5}>
-								<Button variant="outlined" sx={{mt:2}} disabled={start==null} color="secondary" onClick={()=>{setStart(null)}}>
+							<Box display="inline" mr={2}>
+								<Button variant="outlined" disabled={start==null} color="secondary" onClick={()=>{setStart(null)}}>
 									Reset Start
 								</Button>
+							</Box>
+							<br className="br-sp"/>
+							<br className="br-sp"/>
+							<Divider className="br-sp"/>
+							<br className="br-sp"/>
+							<Box display="inline" mr={2}>
+								<Select value={color} onChange={(event) => setColor(event.target.value)}>
+									<MenuItem value="red">
+										<Avatar sx={{ bgcolor: red[500] , width:30, height:30}}>
+											<RemoveCircleIcon/>
+										</Avatar>
+									</MenuItem>
+									<MenuItem value="orange">
+										<Avatar sx={{ bgcolor: orange[500], width:30, height:30 }}>
+											<AssignmentLateIcon/>
+										</Avatar>
+									</MenuItem>
+									<MenuItem value="yellow">
+										<Avatar sx={{ bgcolor: yellow[500], width:30, height:30 }}>
+											<PendingIcon/>
+										</Avatar>
+									</MenuItem>
+									<MenuItem value="green">
+										<Avatar sx={{ bgcolor: green[500], width:30, height:30 }}>
+											<EditIcon/>
+										</Avatar>
+									</MenuItem>
+									<MenuItem value="blue">
+										<Avatar sx={{ bgcolor: blue[500], width:30, height:30 }}>
+											<PageviewIcon/>
+										</Avatar>
+									</MenuItem>
+								</Select>
 							</Box>
 							</Box>
 						}

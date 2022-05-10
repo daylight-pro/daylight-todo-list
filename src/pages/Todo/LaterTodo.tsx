@@ -1,4 +1,5 @@
 import React from 'react';
+import {yellow,blue,green,orange,red} from '@mui/material/colors';
 import {List,ListItem,Divider,ListItemText,ListItemAvatar,Checkbox, Typography,Box,IconButton} from '@mui/material'
 import EventIcon from '@mui/icons-material/Event';
 import ExpandLess from '@mui/icons-material/ExpandLess';
@@ -24,6 +25,8 @@ type LaterTodoPropsType = {
 function LaterTodo(props:LaterTodoPropsType){
 	const todoList : Todo[] = [];
 	const curTodoList : Todo[][] = [];
+	const color_dict = {"red":red[500],"yellow":yellow[500],"orange":orange[500],"green":green[500],"blue":blue[500]};
+	
 	for(let i = 0; i < 7;i++){
 		curTodoList.push([]);
 	}
@@ -52,12 +55,12 @@ function LaterTodo(props:LaterTodoPropsType){
 	curTodoList.forEach((innerTodoList,ind)=>{
 		const date = new Date();
 		date.setDate(date.getDate() + 1 + ind);
-		todoList.push({title:""+(ind+1)+" Days Before ["+Util.printDate(date)+"]",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader"})
+		todoList.push({title:""+(ind+1)+" Days Before ["+Util.printDate(date)+"]",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader",color:"red"})
 		innerTodoList.forEach((todo)=>{
 				todoList.push(todo)
 		});
 	});
-	todoList.push({title:"Later",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader"})
+	todoList.push({title:"Later",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader",color:"red"})
 	laterTodoList.forEach((todo)=>{
 		todoList.push(todo)
 	});
@@ -137,6 +140,7 @@ function LaterTodo(props:LaterTodoPropsType){
 									:
 									<Typography
 										variant={"h6"}
+										sx={{color: color_dict[todo.color]}}
 									>
 										{todo.title}
 									</Typography>

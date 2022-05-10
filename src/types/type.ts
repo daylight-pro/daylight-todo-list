@@ -10,7 +10,8 @@ export type Todo = {
 	due: Date,
 	start: Date | null,
 	subTasks: SubTask[],
-	note: string
+	note: string,
+	color: string
 }
 
 export type RepeatTodo = {
@@ -23,3 +24,5 @@ export type RepeatTodo = {
 }
 
 export type TodoType = "Working"|"All"|"Inbox"|"Later"|"Repeat"|"Home";
+
+export type progress = "red" | "orange" | "yellow" | "green" | "blue";

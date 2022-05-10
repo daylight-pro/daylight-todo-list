@@ -45,7 +45,8 @@ const useTodo = () => {
 					due: convertDate(doc.data().due)!,
 					start: convertDate(doc.data().start),
 					subTasks: doc.data().subTasks,
-					note: doc.data().note
+					note: doc.data().note,
+					color: doc.data().color
 				});
 			});
 			setTodoList(newTodoList);
@@ -122,7 +123,8 @@ const useTodo = () => {
 			due: todo.due,
 			start: todo.start,
 			subTasks: todo.subTasks,
-			note: todo.note
+			note: todo.note,
+			color: todo.color
 		}
 		db.collection('todoList').add(ob).then(ref=>{
 			if(!hidden)enqueueSnackbar('ToDoを正常に作成しました。',{variant:'success'});
@@ -139,7 +141,8 @@ const useTodo = () => {
 			due: todo.due,
 			start: todo.start,
 			subTasks: todo.subTasks,
-			note: todo.note
+			note: todo.note,
+			color: todo.color
 		}
 		db.collection('todoList').doc(todo.id).update(ob).then(ref=>{
 			if(!hidden)enqueueSnackbar('ToDoを正常に更新しました。',{variant:'success'});

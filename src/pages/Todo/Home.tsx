@@ -56,12 +56,12 @@ function Home(props:HomePropsType){
 		curTodoList.forEach((innerTodoList,ind)=>{
 			const date = new Date();
 			date.setDate(date.getDate() + 1 + ind);
-			todoList.push({title:""+(ind+1)+" Days Before ["+Util.printDate(date)+"]",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader"})
+			todoList.push({title:""+(ind+1)+" Days Before ["+Util.printDate(date)+"]",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader",color:"red"})
 			innerTodoList.forEach((todo)=>{
 					todoList.push(todo)
 			});
 		});
-		todoList.push({title:"Later",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader"})
+		todoList.push({title:"Later",start:new Date(),due:new Date(),id:"",completed:false,subTasks:[],note:"DayHeader",color:"red"})
 		laterTodoList.forEach((todo)=>{
 			todoList.push(todo)
 		});
@@ -97,7 +97,8 @@ function Home(props:HomePropsType){
 				due: todo.due,
 				completed: false,
 				subTasks: todo.subTasks,
-				start: newStart
+				start: newStart,
+				color: todo.color
 			},false);
 		}else if(destination.droppableId === "inbox"){
 			props.edit({
@@ -107,7 +108,8 @@ function Home(props:HomePropsType){
 				due: todo.due,
 				completed: false,
 				subTasks: todo.subTasks,
-				start: null
+				start: null,
+				color: todo.color
 			},false);
 		}else if(destination.droppableId === "later"){
 			let index = -1;
@@ -134,7 +136,8 @@ function Home(props:HomePropsType){
 				due: todo.due,
 				completed: false,
 				subTasks: todo.subTasks,
-				start: newStart
+				start: newStart,
+				color: todo.color
 			},false);
 		}else if(destination.droppableId === "completed"){
 			props.edit({
@@ -144,7 +147,8 @@ function Home(props:HomePropsType){
 				due: todo.due,
 				completed: true,
 				subTasks: todo.subTasks,
-				start: todo.start
+				start: todo.start,
+				color: todo.color
 			},false);
 		}else if(destination.droppableId === "edit"){
 			let todo : Todo|null = null;
