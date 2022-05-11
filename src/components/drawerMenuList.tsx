@@ -1,4 +1,4 @@
-import {List,ListItem,Divider,ListItemText,ListItemAvatar,Badge,Box} from '@mui/material'
+import {List,ListItem,Divider,ListItemText,ListItemAvatar,Badge,Box} from '@mui/material';
 
 import InboxIcon from '@mui/icons-material/Inbox';
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
