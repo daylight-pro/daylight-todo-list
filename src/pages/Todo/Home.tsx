@@ -7,9 +7,7 @@ import InboxColumn from '../../components/inboxColumn';
 import LaterColumn from '../../components/laterColumn';
 import CompletedColumn from '../../components/completedColumn';
 import myClasses from '../../materialui/myClasses';
-import { useState , useEffect} from 'react'; 
 import Util from '../../Util'
-import Iframe from 'react-iframe'
 import EditColumn from '../../components/editColumn';
 
 

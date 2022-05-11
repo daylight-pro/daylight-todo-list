@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
 import {yellow,blue,green,orange,red} from '@mui/material/colors';
-import {Card,Typography,Box} from '@mui/material';
+import {Card,Box} from '@mui/material';
 import {Todo} from '../types/type';
 import myClasses from '../materialui/myClasses';
 import {DueViewer} from './dueViewer';

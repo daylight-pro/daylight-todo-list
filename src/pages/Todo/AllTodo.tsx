@@ -1,6 +1,6 @@
 import React from 'react';
+import {yellow,blue,green,orange,red} from '@mui/material/colors';
 import {List,ListItem,Divider,ListItemText,ListItemAvatar,Checkbox, Typography,Box,IconButton} from '@mui/material'
-import { makeStyles } from '@mui/styles';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -24,7 +24,8 @@ type AllTodoPropsType = {
 
 
 function AllTodo(props:AllTodoPropsType){
-	const todoList = props.todoList;
+	const todoList = props.todoList; 
+	const color_dict = {"red":red[500],"yellow":yellow[500],"orange":orange[500],"green":green[500],"blue":blue[500]}
 	todoList.sort((a:Todo,b:Todo)=>{
 		return a.due.getTime() - b.due.getTime();
 	});
@@ -86,6 +87,7 @@ function AllTodo(props:AllTodoPropsType){
 							:
 							<Typography
 								variant={"h6"}
+								sx={{color:color_dict[todo.color]}}
 							>
 								{todo.title}
 							</Typography>

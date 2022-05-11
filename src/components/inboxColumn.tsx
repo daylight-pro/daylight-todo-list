@@ -13,7 +13,7 @@ type InboxColumnPropsType = {
 function InboxColumn(props : InboxColumnPropsType) {
 
 	const classes = myClasses.useStyles();
-	const { width, height } = useWindowSize();
+	const { height } = useWindowSize();
 	return(
 		<Box className={classes.todoContainer} sx={{flexGrow:1, height:height-180}}>
 			<Typography variant="h4" className={classes.inbox + " " + classes.columnTitle}>

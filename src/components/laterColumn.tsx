@@ -13,7 +13,7 @@ type LaterColumnPropsType = {
 
 function LaterColumn(props : LaterColumnPropsType) {
 	const classes = myClasses.useStyles();
-	const { width, height } = useWindowSize();
+	const { height } = useWindowSize();
 	const todoList : Todo[] = [];
 	const curTodoList : Todo[][] = [];
 	for(let i = 0; i < 7;i++){

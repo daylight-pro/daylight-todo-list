@@ -13,7 +13,7 @@ function CompletedColumn(props : CompletedColumnPropsType) {
 
 	const classes = myClasses.useStyles();
 	
-	const { width, height } = useWindowSize();
+	const { height } = useWindowSize();
 	return(
 		<Box className={classes.todoContainer} sx={{height:height-320}}>
 			<Typography variant="h4" className={classes.columnTitle + " " + classes.completed}>
