@@ -77,7 +77,8 @@ function App() {
         } else {
             state.setDisplayMode("Home");
         }
-	});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	},[]);
 
 	const changeDisplay = ((info:TodoType)=>{
 		setIsOpenDrawer(false);
