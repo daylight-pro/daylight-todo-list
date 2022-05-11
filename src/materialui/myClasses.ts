@@ -1,4 +1,4 @@
-import { DefaultTheme } from "@material-ui/styles";
+import { DefaultTheme } from "@mui/styles";
 import { makeStyles } from "@mui/styles";
 
 export default class myClasses{

@@ -1,10 +1,10 @@
-import {List,ListItem,Divider,ListItemText,ListItemAvatar,Badge,Box} from '@material-ui/core'
+import {List,ListItem,Divider,ListItemText,ListItemAvatar,Badge,Box} from '@mui/material';
 
-import InboxIcon from '@material-ui/icons/Inbox';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import EventIcon from '@material-ui/icons/Event';
-import RepeatIcon from '@material-ui/icons/Repeat';
-import ListAltIcon from '@material-ui/icons/ListAlt';
+import InboxIcon from '@mui/icons-material/Inbox';
+import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
+import EventIcon from '@mui/icons-material/Event';
+import RepeatIcon from '@mui/icons-material/Repeat';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import HomeIcon from '@mui/icons-material/Home';
 import {TodoType} from "../types/type"
 type drawerMenuListPropsType = {
