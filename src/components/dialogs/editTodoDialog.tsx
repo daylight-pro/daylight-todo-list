@@ -167,7 +167,7 @@ function EditTodoDialog(props:EditTodoDialogPropsType){
 					<ListItemText
 						primary={
 							<React.Fragment>
-							<Box display="inline" mr={5}>
+							<Box display="inline" mr={2}>
 							<TextField label="Title" style={{width: 350}} variant="filled" value={title} onChange={(event) => setTitle(event.target.value)}></TextField>
 							</Box>
 							<br className="br-sp"/>
@@ -175,7 +175,7 @@ function EditTodoDialog(props:EditTodoDialogPropsType){
 							<Divider className="br-sp"/>
 							<br className="br-sp"/>
 
-							<Box display="inline" mr={5}>
+							<Box display="inline" mr={2}>
 							      <DateTimePicker
 									label="Due"
 									value={due}
@@ -187,7 +187,7 @@ function EditTodoDialog(props:EditTodoDialogPropsType){
 							<br className="br-sp"/>
 							<Divider className="br-sp"/>
 							<br className="br-sp"/>
-							<Box display="inline" mt={1} mr={5}>
+							<Box display="inline" mt={1} mr={2}>
 								<DesktopDatePicker
 								label="Start"
 								value={start}
@@ -199,7 +199,7 @@ function EditTodoDialog(props:EditTodoDialogPropsType){
 							<br className="br-sp"/>
 							<Divider className="br-sp"/>
 							<br className="br-sp"/>
-							<Box display="inline" mr={5}>
+							<Box display="inline" mr={2}>
 								<Button variant="outlined" disabled={start==null} color="secondary" onClick={()=>{setStart(null)}}>
 									Reset Start
 								</Button>
