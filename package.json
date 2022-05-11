@@ -16,7 +16,7 @@
     "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^17.0.11",
     "@uiw/react-md-editor": "^3.6.4",
-    "marked": "^3.0.4",
+    "marked": "^4.0.10",
     "notistack": "^1.0.9",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
